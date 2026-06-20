@@ -9,10 +9,24 @@ function applyLanguage(lang) {
   });
 }
 
+function closeLanguageModal() {
+  if (!modal) return;
+  modal.classList.add("is-hidden");
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+
+function openLanguageModal() {
+  if (!modal) return;
+  modal.classList.remove("is-hidden");
+  modal.style.display = "flex";
+  document.body.classList.add("modal-open");
+}
+
 function setLanguage(lang) {
   localStorage.setItem("hx_language", lang);
   applyLanguage(lang);
-  modal.style.display = "none";
+  closeLanguageModal();
 }
 
 function toggleMenu() {
@@ -26,9 +40,10 @@ document.querySelectorAll("#main-nav a").forEach((link) => {
 const savedLanguage = localStorage.getItem("hx_language");
 if (savedLanguage) {
   applyLanguage(savedLanguage);
-  modal.style.display = "none";
+  closeLanguageModal();
 } else {
   applyLanguage("pt");
+  openLanguageModal();
 }
 
 const observer = new IntersectionObserver((entries) => {

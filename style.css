@@ -97,3 +97,25 @@ body::after{
 @media (prefers-reduced-motion: reduce){
   body::before,body::after,.hero::before,.about-hero::before{animation:none!important;}
 }
+
+/* Language modal fix - true centered overlay */
+.language-modal{
+  position:fixed!important;
+  inset:0!important;
+  z-index:9999!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.86);
+  backdrop-filter:blur(10px);
+}
+.language-modal.is-hidden{
+  display:none!important;
+}
+body.modal-open{
+  overflow:hidden;
+}
+.language-box{
+  transform:translateY(0);
+}
